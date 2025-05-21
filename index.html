@@ -12,7 +12,7 @@
       color: #333;
     }
     header {
-      background-color: #84b6e8;
+      background-color: #8b0000;
       color: white;
       padding: 20px;
       text-align: center;
@@ -35,7 +35,7 @@
       margin: auto;
     }
     footer {
-      background-color: #84b6e8;
+      background-color: #8b0000;
       color: white;
       text-align: center;
       padding: 20px;
@@ -100,54 +100,38 @@
     <p>📧 <a href="mailto:albaluxbrad@gmail.com">albaluxbrad@gmail.com</a></p>
     <p>📞 <a href="tel:+40736658589">+40736658589</a></p>
     <p>🌐 <a href="https://pensiuneaanamaria.metro.rest/?lang=en#contact" target="_blank">Restaurant Ana Maria</a></p>
-    
-    
-<!-- In your <head> tag -->
-<script src="https://cdn.botpress.cloud/webchat/v2.4/inject.js"></script>
-<style>
-  #webchat .bpWebchat {
-    position: unset;
-    width: 100%;
-    height: 100%;
-    max-height: 100%;
-    max-width: 100%;
-  }
 
-  #webchat .bpFab {
-    display: none;
-  }
-</style>
+    <button class="chat-button" id="chat-open-button">
+      Deschide chat-ul cu asistentul
+    </button>
+  </section>
 
-<!-- Put this on your page BEFORE the script below -->
-<div id="webchat" style="width: 500px; height: 500px;"></div>
-
-<!-- In your <body> tag -->
-<script>
-  window.botpress.on("webchat:ready", () => {
-    window.botpress.open();
-  });
-  window.botpress.init({
-  "botId": "e7814f46-c2ed-44f4-ad30-4b4d45332cc2",
-  "configuration": {
-    "botAvatar": "https://files.bpcontent.cloud/2025/05/21/10/20250521102158-CN5SSTJS.png",
-    "fabImage": "https://files.bpcontent.cloud/2025/05/21/10/20250521102211-GHYVTUOZ.png",
-    "website": {},
-    "email": {},
-    "phone": {},
-    "termsOfService": {},
-    "privacyPolicy": {},
-    "color": "#5eb1ef",
-    "variant": "soft",
-    "themeMode": "light",
-    "fontFamily": "inter",
-    "radius": 1
-  },
-  "clientId": "338ef6a6-7eeb-4ebe-9d0c-2f1c2a012ff2",
-  "selector": "#webchat"
-});
-</script>
   <footer>
     <p>&copy; 2025 Restaurant Ana Maria. Toate drepturile rezervate.</p>
   </footer>
+
+  <!-- Script pentru integrarea Botpress WebChat -->
+  <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+  <script>
+    window.addEventListener('load', function () {
+      window.botpressWebChat.init({
+        "botId": "e7814f46-c2ed-44f4-ad30-4b4d45332cc2",
+        "hostUrl": "https://cdn.botpress.cloud/webchat/v1",
+        "messagingUrl": "https://messaging.botpress.cloud",
+        "clientId": "338ef6a6-7eeb-4ebe-9d0c-2f1c2a012ff2",
+        "containerWidth": "400px",
+        "layoutWidth": "100%",
+        "hideWidget": true,
+        "showPoweredBy": false
+      });
+
+      const chatButton = document.getElementById('chat-open-button');
+      chatButton.addEventListener('click', () => {
+        if (window.botpressWebChat && window.botpressWebChat.sendEvent) {
+          window.botpressWebChat.sendEvent({ type: 'show' });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
